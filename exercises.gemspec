@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 12.3.0"
   spec.add_development_dependency "rspec", "~> 3.7.0"
+  spec.add_development_dependency "pry"
 
   # Static analysis of code
   spec.add_development_dependency "fasterer", "~> 0.3.2"
