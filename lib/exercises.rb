@@ -4,6 +4,7 @@ require "pry"
 
 require "exercises/version"
 require "exercises/day_1/captcha"
+require "exercises/day_2/checksum"
 
 # Main class, it launches all exercises
 module Exercises
@@ -20,3 +21,16 @@ module Exercises
 
     Day1::Captcha.new(input, input.size / 2).call
   end
+
+  def run_2_part_1
+    input = File.read("lib/exercises/day_2/input.txt")
+
+    Day2::Checksum.new(input).call
+  end
+
+  def run_2_part_2
+    input = File.read("lib/exercises/day_2/input.txt")
+
+    Day2::Checksum.new(input, false).call
+  end
+end
