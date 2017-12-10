@@ -53,26 +53,26 @@ module Day2
     #
     # In this example, the sum of the results would be 4 + 3 + 2 = 9.
     def call_part_2
-      matrix.map do |row|
-        row
-          .map(&:to_i)
+      matrix.sum do |row|
+        row_of_integers = row.map(&:to_i)
+
+        row_of_integers
           .each_with_index
-          .map do |i, index|
-            row[(index + 1)..-1].map do |j|
-              j = j.to_i
-              sum = 0
-              sum = if j > i && (j % i).zero?
-                      j / i
-                    elsif i > j && (i % j).zero?
-                      i / j
+          .sum do |i, index|
+            row_of_integers[(index + 1)..-1].reduce(0) do |sum, j|
+              max_value = [i, j].max
+              min_value = [i, j].min
+
+              res = if (max_value % min_value).zero?
+                      max_value / min_value
+                    else
+                      0
                     end
-              sum
+
+              sum + res
             end
-            .compact
-            .sum
           end
-          .sum
-      end.sum
+      end
     end
   end
 end
