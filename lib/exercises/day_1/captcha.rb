@@ -22,26 +22,30 @@
 module Day1
   # Resolve the captcha
   class Captcha
-    attr_reader(:input)
+    attr_reader(:input, :step)
 
-    def initialize(input)
+    def initialize(input, step)
       @input = input
+      @step  = step
     end
 
     def call
-      numbers = input.gsub(/\s+/, "")
-                     .split("")
-                     .map(&:to_i)
+      numbers = extract_numbers
 
-      numbers << numbers[0] # Add first number to the end
-
-      prev = 0
-      numbers.reduce(0) do |sum, n|
-        (sum += n) if n == prev
-
-        prev = n
-        sum
+      sum = 0
+      numbers.each_with_index do |n, index|
+        sum += n if n == numbers[(index + step) % numbers.size]
       end
+
+      sum
+    end
+
+    private
+
+    def extract_numbers
+      input.gsub(/\s+/, "")
+           .split("")
+           .map(&:to_i)
     end
   end
 end
