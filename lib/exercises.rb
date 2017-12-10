@@ -5,6 +5,7 @@ require "pry"
 require "exercises/version"
 require "exercises/day_1/captcha"
 require "exercises/day_2/checksum"
+require "exercises/day_3/manhattan"
 
 # Main class, it launches all exercises
 module Exercises
@@ -32,5 +33,9 @@ module Exercises
     input = File.read("lib/exercises/day_2/input.txt")
 
     Day2::Checksum.new(input, false).call
+  end
+
+  def run_3_part_1
+    Day3::Manhattan.new(347991).call
   end
 end
