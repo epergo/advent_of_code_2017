@@ -35,6 +35,7 @@ Style/AsciiComments:
 Metrics/BlockLength:
   Enabled: true
   Exclude:
+    - 'spec/**/*.rb'
     - 'test/**/*.rb'
     - 'lib/tasks/*.rake'
 

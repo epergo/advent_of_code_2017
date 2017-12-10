@@ -36,6 +36,6 @@ module Exercises
   end
 
   def run_3_part_1
-    Day3::Manhattan.new(347991).call
+    Day3::Manhattan.new(347_991).call
   end
 end

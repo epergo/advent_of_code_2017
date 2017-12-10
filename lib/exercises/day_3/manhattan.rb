@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Day3
   # Each square on the grid is allocated in a spiral pattern starting at
   # a location marked 1 and then counting up while spiraling outward.
@@ -57,7 +59,7 @@ module Day3
     def find_level
       level = 0
       max_value = max_number_of_a_level(level)
-      while(max_value < input) do
+      while max_value < input
         level += 1
         max_value = max_number_of_a_level(level)
       end
@@ -94,11 +96,9 @@ module Day3
 
       current_distance = initial
       side_distances = Array.new(size_of_side - 1) do |index|
-        if index + 1 < size_of_side / 2
-          current_distance -= 1
-        else
-          current_distance += 1
-        end
+        operator         = index + 1 < size_of_side / 2 ? :- : :+
+        current_distance = current_distance.send(operator, 1)
+
         current_distance
       end
 
@@ -107,4 +107,3 @@ module Day3
     end
   end
 end
-

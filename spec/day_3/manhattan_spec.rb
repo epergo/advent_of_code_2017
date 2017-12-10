@@ -13,4 +13,3 @@ RSpec.describe(Day3::Manhattan) do
     expect(Day3::Manhattan.new(1024).call).to be(31)
   end
 end
-

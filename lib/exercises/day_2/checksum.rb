@@ -13,17 +13,17 @@ module Day2
   #
   # In this example, the spreadsheet's checksum would be 8 + 4 + 6 = 18.
   class Checksum
-    attr_reader :input, :matrix, :part_1
+    attr_reader :input, :matrix, :part1
 
-    def initialize(input, part_1 = true)
+    def initialize(input, part1 = true)
       @input  = input
       @matrix = input.split("\n").map { |row| row.split("\t") }
 
-      @part_1 = part_1
+      @part1 = part1
     end
 
     def call
-      if part_1
+      if part1
         call_part_1
       else
         call_part_2
@@ -60,18 +60,20 @@ module Day2
           .each_with_index
           .sum do |i, index|
             row_of_integers[(index + 1)..-1].reduce(0) do |sum, j|
-              max_value = [i, j].max
-              min_value = [i, j].min
-
-              res = if (max_value % min_value).zero?
-                      max_value / min_value
-                    else
-                      0
-                    end
-
-              sum + res
+              sum + divide_if_possible(i, j)
             end
           end
+      end
+    end
+
+    def divide_if_possible(val1, val2)
+      max_value = [val1, val2].max
+      min_value = [val1, val2].min
+
+      if (max_value % min_value).zero?
+        max_value / min_value
+      else
+        0
       end
     end
   end
